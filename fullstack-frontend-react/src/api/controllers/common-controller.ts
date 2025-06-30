@@ -1,9 +1,6 @@
 import { $api, config } from "../index";
+import { dataMain } from "../../types/common.type";
 
-
-export const getCommon = () => {
-    return $api.get('/api', { headers: config() });
-}
 
 export const getData = () => {
     return $api.get('/api/data/', { headers: config() });
@@ -12,12 +9,11 @@ export const getData = () => {
 export const getDataId = (id: number) => {
     return $api.get(`/api/data/${id}`, { headers: config() });
 }
-
-export const createData = (body: dataDto) => {
+export const createData = (body: dataMain) => {
     return $api.post(`/api/data/`, body, { headers: config() });
 }
 
-export const editDataId = (id: number, body: dataDto) => {
+export const editDataId = (id: number, body: dataMain) => {
     return $api.put(`/api/data/${id}`, body, { headers: config() });
 }
 

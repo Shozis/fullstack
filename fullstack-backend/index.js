@@ -3,7 +3,7 @@ const require = createRequire(import.meta.url);
 
 const express = require("express");
 
-import { dataApiJournal } from "./src/api/_dataApijournal";
+import { dataApiJournal } from "./src/api/_dataApiJournal.js";
 
 // назначение порта для сервера (нельзя использовать 3000 порт, так как он используется для frontend)
 const PORT = process.env.PORT || 3001;

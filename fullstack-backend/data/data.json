@@ -1,19 +1,14 @@
 {
     "dataMain": [
         {
-        "id": 1,
-        "name": "Stas",
-        "age": 31
+            "id": 1,
+            "name": "Stas",
+            "age": 31
         },
         {
             "id": 2,
             "age": "Jane",
             "name": 42
-        },
-        {
-            "id": 3,
-            "age": "qqq",
-            "name": 45
         }
     ]
 }

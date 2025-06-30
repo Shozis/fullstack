@@ -8,11 +8,11 @@ const data = require('../../data/data.json');
 
 import {
     updateJsonFile
-} from "../helpers/_update";
+} from "../helpers/_update.js";
 import {
     findIndexId,
     findId
-} from "../helpers/_searchData";
+} from "../helpers/_searchData.js";
 
 export const dataApiJournal = (app) => {
 
