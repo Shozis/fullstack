@@ -30,7 +30,9 @@ const MainPage = () => {
     }}
   >
     {data?.name}
-    <ul>
+    <ul style={{
+      
+    }}>
       <li>id: {data?.id}</li>
       <li>name: {data?.name}</li>
       <li>age: {data?.age}</li>
