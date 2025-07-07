@@ -10,7 +10,7 @@ export const dataApiJournal = (app) => {
 
     //* get-запрос data 
     app.get('/api/data/', (req, res) => {
-        return res.json(data.dataMain);
+        return res.json(data.dataD, data.dataL);
     });
 
     app.get('/api/message', (req, res) => {

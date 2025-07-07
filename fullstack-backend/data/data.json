@@ -11,14 +11,14 @@
             "name": 42
         }
     ],
-    "designers": [
+    "dataD": [
         {
             "id": 1,
             "name": "Rai",
             "age": 11
         }
     ],
-    "lawyers": [
+    "dataL": [
         {
             "id": 1,
             "name": "Rob",

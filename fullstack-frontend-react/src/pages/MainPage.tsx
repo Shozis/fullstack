@@ -12,13 +12,16 @@ import {
 const MainPage = () => {
     const navigate = useNavigate();
 
-    const [data, setData] = React.useState();
+    const [data, setData] = React.useState<{
+        id: number,
+        message: string
+    }>();
 
     useEffect(() => {
         getData()
             .then((response) => {
                 console.log(response);
-                setData(response.data.message);
+                setData(response.data);
             })
             .catch((e) => console.log(e));
     }, []);
@@ -27,7 +30,7 @@ const MainPage = () => {
     >
         <Typography>
             {
-                data ? data : 'server disable'
+                data ? data.message : 'server disable'
             }
         </Typography>
         <Button
