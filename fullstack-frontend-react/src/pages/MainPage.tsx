@@ -1,104 +1,42 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { deleteDataId, getData,  } from "../api/controllers/common-controller";
+import { getData } from "../api/controllers/common-controller";
 
 import {
-  Box,
-  Button,
-  List,
-  ListItem,
-  Typography,
+    Box,
+    Button,
+    Typography
 } from "@mui/material";
 
-import { dataMain } from "../types/common.type";
-
-
 const MainPage = () => {
-  const navigate = useNavigate();
-  const [data, setData] = React.useState<dataMain[]>();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    getData()
-      .then((response) => {
-        console.log(response);
-        setData(response.data);
-      })
-      .catch(e => console.log(e))
-  }, []);
+    const [data, setData] = React.useState();
 
-     return <Box
-        sx={{
-            width: '900px',
-            m: '0 auto'
-        }}
+    useEffect(() => {
+        getData()
+            .then((response) => {
+                console.log(response);
+                setData(response.data.message);
+            })
+            .catch((e) => console.log(e));
+    }, []);
+
+    return <Box
     >
+        <Typography>
+            {
+                data ? data : 'server disable'
+            }
+        </Typography>
         <Button
             variant='contained'
-            color='success'
-            onClick={() => navigate('/change-backend/new/')}
-            sx={{
-                my: 1
-            }}
-        >
-            Создать новую запись
+            color='primary'
+            onClick={() => navigate('/Journal')}
+            >
+            Journal
         </Button>
-        <List>
-            {
-                data?.map((item, key) => (
-                    <ListItem
-                        key={`listItem-${key}`}
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            border: '1px solid #007dea'
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}
-                        >
-                            <Typography
-                                component={'h3'}
-                            >
-                                Имя: {item.name}
-                            </Typography>
-                            <Typography
-                                component={'h4'}
-                            >
-                                Возраст: {item.age}
-                            </Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}
-                        >
-                            <Button
-                                color='info'
-                                variant='contained'
-                                onClick={() => navigate(`/change-backend/edit/${item.id}`)}
-                            >
-                                Изменить
-                            </Button>
-                            <Button
-                                color='error'
-                                variant='contained'
-                                onClick={() => deleteDataId(Number(item.id))}
-                                sx={{
-                                    mt: 1
-                                }}
-                            >
-                                Удалить
-                            </Button>
-                        </Box>
-                    </ListItem>
-                ))
-            }
-        </List>
     </Box>
 }
 

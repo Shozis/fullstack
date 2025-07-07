@@ -1,21 +1,12 @@
-import {
-    createRequire
-} from "module";
-const require = createRequire(
-    import.meta.url);
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const data = require('../../data/data.json');
 
-import {
-    updateJsonFile
-} from "../helpers/_update.js";
-import {
-    findIndexId,
-    findId
-} from "../helpers/_searchData.js";
+import { updateJsonFile } from "../helpers/_update.js";
+import { findIndexId, findId } from "../helpers/_searchData.js";
 
 export const dataApiJournal = (app) => {
-
 
     //* get-запрос data 
     app.get('/api/data/', (req, res) => {
@@ -26,7 +17,6 @@ export const dataApiJournal = (app) => {
     app.get('/api/data/:id', (req, res) => {
         const idDataReq = req.Params.id;
         console.log('start request id' + idDataReq);
-
 
         const dataResponse = findId(idDataReq, data.dataMain);
 
@@ -64,7 +54,7 @@ export const dataApiJournal = (app) => {
         return res.json(data.dataMain[data.dataMain.length - 1]);
     })
 
-        //* put-запрос
+    //* put-запрос
     app.put('/api/data/:id', (req, res) => {
         console.log('change data for id: ' + req.params.id);
         const idDataReq = req.params.id;
@@ -72,7 +62,7 @@ export const dataApiJournal = (app) => {
 
         let indexDataMain = findIndexId(idDataReq, data.dataMain);
 
-        if (indexDataMain  === -1) {
+        if (indexDataMain === -1) {
             console.log('No id: ' + idDataReq);
             return res.status(404).send("Data not found");
         } else {
@@ -82,14 +72,14 @@ export const dataApiJournal = (app) => {
                 age: updatedData.age
             }
 
-            data.dataMain[indexDataMain ] = newElement;
+            data.dataMain[indexDataMain] = newElement;
             updateJsonFile('data.json', data);
-            res.json(data.dataMain[indexDataMain ]);
+            res.json(data.dataMain[indexDataMain]);
             console.log("completed change data");
         }
     });
 
-        //* delete-запрос
+    //* delete-запрос
     app.delete('/api/data/:id', (req, res) => {
         console.log(`Delete ${req.params.id} ...`);
 
