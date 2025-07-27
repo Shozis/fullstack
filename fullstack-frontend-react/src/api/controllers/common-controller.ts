@@ -3,8 +3,10 @@ import { dataMain } from "../../types/common.type";
 
 
 export const getData = () => {
-    return $api.get('/api/message/', { headers: config() });
+    return $api.get('/api/data/', { headers: config() });
 }
+
+
 
 export const getDataId = (id: number) => {
     return $api.get(`/api/data/${id}`, { headers: config() });
